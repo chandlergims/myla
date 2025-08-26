@@ -11,6 +11,11 @@ export default function Journal() {
       id: 1,
       filename: "conversation_01_8-25-25.txt",
       size: "2.4kb"
+    },
+    {
+      id: 2,
+      filename: "conversation_02_8-26-25.txt",
+      size: "3.1kb"
     }
   ];
 
