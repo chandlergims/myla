@@ -39,20 +39,15 @@ export default function Journal() {
         </div>
 
         <div className="space-y-1">
-          {filteredEntries.map((entry, index) => (
+          {filteredEntries.map((entry) => (
             <Link 
               key={entry.id}
               href={`/journal/entry/${entry.id}`}
               className="block hover:text-gray-300 transition-colors"
             >
-              <div className={`flex items-center justify-center space-x-4 py-2 px-4 rounded ${
-                index === 0 ? 'border border-[#1a1a1a] bg-[#0a0a0a]' : ''
-              }`}>
+              <div className="flex items-center justify-center space-x-4 py-2 px-4 rounded">
                 <span className="text-white text-xs font-typestar">{entry.filename}</span>
                 <span className="text-gray-400 text-xs">{entry.size}</span>
-                {index === 0 && (
-                  <span className="text-green-400 text-xs">●</span>
-                )}
               </div>
             </Link>
           ))}
