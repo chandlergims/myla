@@ -1,57 +1,28 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'SNPro';
-  src: url('/SNPro/SNPro-Regular.woff2') format('woff2'),
-       url('/SNPro/SNPro-Regular.woff') format('woff'),
-       url('/SNPro/SNPro-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'SNPro';
-  src: url('/SNPro/SNPro-Medium.woff2') format('woff2'),
-       url('/SNPro/SNPro-Medium.woff') format('woff'),
-       url('/SNPro/SNPro-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'SNPro';
-  src: url('/SNPro/SNPro-Semibold.woff2') format('woff2'),
-       url('/SNPro/SNPro-Semibold.woff') format('woff'),
-       url('/SNPro/SNPro-Semibold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'SNPro';
-  src: url('/SNPro/SNPro-Bold.woff2') format('woff2'),
-       url('/SNPro/SNPro-Bold.woff') format('woff'),
-       url('/SNPro/SNPro-Bold.ttf') format('truetype');
-  font-weight: 700;
+  font-family: 'Typestar';
+  src: url('/Typestar-OCR.otf') format('opentype');
+  font-weight: normal;
   font-style: normal;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: 'SNPro', var(--font-geist-sans);
+  --font-sans: 'Typestar', var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: #ffffff;
-  color: #171717;
-  font-family: 'SNPro', Arial, Helvetica, sans-serif;
+  background: #000000;
+  color: #ffffff;
+  font-family: 'Typestar', Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -59,5 +30,65 @@ body {
 }
 
 html {
-  background: #ffffff;
+  background: #000000;
+}
+
+@keyframes eyeBlink {
+  0%, 85%, 100% {
+    transform: scaleY(1);
+  }
+  90%, 95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes terminalScroll {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* Prevent image dragging */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Terminal background effect */
+.terminal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.terminal-line {
+  position: absolute;
+  left: 20px;
+  font-family: 'Typestar', monospace;
+  font-size: 14px;
+  color: rgba(0, 255, 0, 0.6);
+  white-space: nowrap;
+  animation: terminalScroll 6s linear infinite;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
 }

@@ -1,18 +1,60 @@
+'use client';
+
+import Link from 'next/link';
+import { useState } from 'react';
+
 export default function Journal() {
+  const [searchTerm, setSearchTerm] = useState('');
+  
+  const entries = [
+    {
+      id: 1,
+      filename: "conversation_01_8-25-25.txt",
+      size: "2.4kb"
+    }
+  ];
+
+  const filteredEntries = entries.filter(entry =>
+    entry.filename.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="min-h-screen bg-white">
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
-          Journal
-        </h1>
+    <div className="min-h-screen bg-black p-8">
+      <div className="max-w-2xl mx-auto text-center">
         
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gray-50 rounded-lg p-8 shadow-sm min-h-[400px]">
-            <div className="text-center text-gray-500 mt-32">
-              <p className="text-lg">Journal entries will appear here...</p>
-              <p className="text-sm mt-2">This is where Myla's thoughts and experiences will be documented.</p>
-            </div>
-          </div>
+        {/* Search Bar */}
+        <div className="mb-6">
+          <input
+            type="text"
+            placeholder="Search conversations..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="px-3 py-2 bg-[#1a1a1a] rounded text-white text-xs focus:outline-none w-64"
+          />
+        </div>
+
+        <div className="space-y-1">
+          {filteredEntries.map((entry, index) => (
+            <Link 
+              key={entry.id}
+              href={`/journal/entry/${entry.id}`}
+              className="block hover:text-gray-300 transition-colors"
+            >
+              <div className={`flex items-center justify-center space-x-4 py-2 px-4 rounded ${
+                index === 0 ? 'border border-[#1a1a1a] bg-[#0a0a0a]' : ''
+              }`}>
+                <span className="text-white text-xs font-typestar">{entry.filename}</span>
+                <span className="text-gray-400 text-xs">{entry.size}</span>
+                {index === 0 && (
+                  <span className="text-green-400 text-xs">●</span>
+                )}
+              </div>
+            </Link>
+          ))}
+          
+          {filteredEntries.length === 0 && (
+            <p className="text-gray-500 text-xs">No conversations found</p>
+          )}
         </div>
       </div>
     </div>

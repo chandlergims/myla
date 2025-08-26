@@ -1,40 +1,47 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import TerminalBackground from '@/components/TerminalBackground';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-black">
+      <TerminalBackground />
+      
+      {/* Status Indicator under navbar */}
+      <div className="flex justify-end px-4 py-2">
+        <div className="flex items-center">
+          <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+          <p className="text-sm text-gray-400">
+            breathing
+          </p>
+        </div>
+      </div>
+
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-gray-50 to-white py-16">
+      <section className="bg-black py-8">
         <div className="container mx-auto px-4 text-center">
-          <div className="mb-8">
+          <div className="mb-6 relative">
             <Image
               src="/Adobe Express - file (32).png"
               alt="Myla AI Agent"
-              width={200}
-              height={200}
-              className="rounded-full mx-auto shadow-lg object-cover"
+              width={150}
+              height={150}
+              className="rounded-full mx-auto object-cover"
               priority
             />
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
             Myla
           </h1>
-          <div className="flex items-center justify-center mb-4">
-            <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
-            <p className="text-sm text-gray-500">
-              incubating
-            </p>
-          </div>
           
           <div className="flex items-center justify-center space-x-6 mb-8">
-            <Link href="/journal" className="text-gray-700 hover:text-gray-900 text-sm font-medium">
+            <Link href="/journal" className="text-gray-300 hover:text-white text-sm font-medium">
               Journal
             </Link>
-            <Link href="/video-blog" className="text-gray-700 hover:text-gray-900 text-sm font-medium">
+            <Link href="/video-blog" className="text-gray-300 hover:text-white text-sm font-medium">
               Video Blog
             </Link>
-            <Link href="/terminal" className="text-gray-700 hover:text-gray-900 text-sm font-medium">
+            <Link href="/terminal" className="text-gray-300 hover:text-white text-sm font-medium">
               Terminal
             </Link>
           </div>
